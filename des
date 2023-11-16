@@ -1,0 +1,83 @@
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+// Defines for DES rounds and key size
+#define NUM_ROUNDS 16
+#define KEY_SIZE 64
+
+// Function prototypes
+void des_key_schedule(unsigned char key[KEY_SIZE], unsigned char subkeys[NUM_ROUNDS][48]);
+void des_encrypt(unsigned char plaintext[8], unsigned char ciphertext[8], unsigned char subkeys[NUM_ROUNDS][48]);
+void des_decrypt(unsigned char ciphertext[8], unsigned char plaintext[8], unsigned char subkeys[NUM_ROUNDS][48]);
+
+int main() {
+
+  // Plaintext to encrypt
+  unsigned char plaintext[8] = {0x12, 0x34, 0x56, 0x78, 0x9a, 0xbc, 0xde, 0xf0};
+
+  // Ciphertext array
+  unsigned char ciphertext[8]; 
+
+  // Key 
+  unsigned char key[KEY_SIZE] = {0x01, 0x23, 0x45, 0x67, 0x89, 0xab, 0xcd, 0xef};
+
+  // Generate subkeys
+  unsigned char subkeys[NUM_ROUNDS][48];
+  des_key_schedule(key, subkeys);
+
+  // Encrypt
+  des_encrypt(plaintext, ciphertext, subkeys);
+
+  // Print ciphertext
+  printf("Ciphertext: ");
+  for(int i=0; i<8; i++) {
+    printf("%02x ", ciphertext[i]);
+  }
+
+  // Decrypt
+  des_decrypt(ciphertext, plaintext, subkeys);
+  
+  // Print decrypted plaintext
+  printf("\nDecrypted plaintext: ");
+  for(int i=0; i<8; i++) {
+    printf("%02x ", plaintext[i]);
+  }
+
+  return 0;
+}
+
+// DES key schedule algorithm
+void des_key_schedule(unsigned char key[KEY_SIZE], unsigned char subkeys[NUM_ROUNDS][48]) {
+
+  // Implementation of DES key schedule
+
+  // Initial permutation
+  // Generate 16 subkeys
+  // Perform subkey permutations
+
+}
+
+// DES encryption algorithm
+void des_encrypt(unsigned char plaintext[8], unsigned char ciphertext[8], unsigned char subkeys[NUM_ROUNDS][48]) {
+
+  // Implementation of DES encryption
+
+  // Initial permutation
+  // 16 rounds feistel network
+  // Final permutation
+
+  // Store output in ciphertext
+}
+
+// DES decryption algorithm 
+void des_decrypt(unsigned char ciphertext[8], unsigned char plaintext[8], unsigned char subkeys[NUM_ROUNDS][48]) {
+
+  // Implementation of DES decryption
+  
+  // Initial permutation
+  // 16 rounds feistel network
+  // Final permutation  
+
+  // Store output in plaintext
+}
